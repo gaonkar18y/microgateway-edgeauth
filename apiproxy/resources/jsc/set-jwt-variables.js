@@ -59,3 +59,5 @@ try {
     context.setVariable("token_expiry", "108000");
 }
 
+// set to secs in string, since default is miliseconds if number.
+context.setVariable("jwt_token_expiry", context.getVariable("token_expiry") + "s");
