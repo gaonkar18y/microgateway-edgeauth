@@ -2,7 +2,9 @@
 <JavaCallout async="false" continueOnError="false" enabled="true" name="JavaCallout">
     <DisplayName>JavaCallout</DisplayName>
     <FaultRules/>
-    <Properties/>
+    <Properties>
+        <Property name="REGION_MAP">DN=edgeservices.apigee.net,US-EAST=edgeservices-us-east.apigee.net,EU-WEST=edgeservices-eu-west.apigee.net</Property>
+    </Properties>  
     <ClassName>io.apigee.microgateway.javacallout.Callout</ClassName>
     <ResourceURL>java://micro-gateway-products-javacallout-2.0.0.jar</ResourceURL>
 </JavaCallout>

@@ -115,6 +115,81 @@
             </Response>
             <Condition>(proxy.pathsuffix MatchesPath "/products") and (request.verb = "GET")</Condition>
         </Flow>
+        <Flow name="Bootsrap">
+            <Description/>
+            <Request>
+                <Step>
+                    <Condition>request.header.Authorization is null</Condition>
+                    <FaultRules/>
+                    <Name>AuthenticationError</Name>
+                </Step>
+                <Step>
+                    <FaultRules/>
+                    <Name>Authenticate-Call</Name>
+                </Step>
+                <Step>
+                    <FaultRules/>
+                    <Name>Lookup-Filter</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Condition>lookupcache.Lookup-Filter.cachehit = false</Condition>
+                    <FaultRules/>
+                    <Name>JavaCallout</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/bootstrap") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="AXPublisher">
+            <Description/>
+            <Request>
+                <Step>
+                    <Condition>request.header.Authorization is null</Condition>
+                    <FaultRules/>
+                    <Name>AuthenticationError</Name>
+                </Step>
+                <Step>
+                    <FaultRules/>
+                    <Name>Authenticate-Call</Name>
+                </Step>
+                <Step>
+                    <FaultRules/>
+                    <Name>Lookup-Filter</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Condition>lookupcache.Lookup-Filter.cachehit = false</Condition>
+                    <FaultRules/>
+                    <Name>JavaCallout</Name>
+                </Step>
+            </Response>
+            <Condition>( proxy.pathsuffix MatchesPath "/axpublisher" and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="Region">
+            <Request>
+                <Step>
+                    <Condition>request.header.Authorization is null</Condition>
+                    <FaultRules/>
+                    <Name>AuthenticationError</Name>
+                </Step>
+                <Step>
+                    <FaultRules/>
+                    <Name>Authenticate-Call</Name>
+                </Step>
+                <Step>
+                    <FaultRules/>
+                    <Name>Lookup-Filter</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>JavaCallout</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/region" and (request.verb = "GET"))</Condition>
+        </Flow>
         <Flow name="Obtain Access Token">
             <Description/>
             <Request>
